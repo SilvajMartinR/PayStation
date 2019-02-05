@@ -22,6 +22,9 @@ import org.junit.BeforeClass;
 public class PayStationImplTest {
 
     PayStation ps;
+    
+    //adding test for LinearRateStrategy
+    RateStrategy rateStrategy1;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -34,7 +37,11 @@ public class PayStationImplTest {
     @Before
     public void setup() {
         ps = new PayStationImpl();
+        
+        //setting up LinearRateStrategy
+        rateStrategy1 = new LinearRateStrategy();
     }
+    
 
     @After
     public void tearDown() throws Exception {
@@ -156,12 +163,6 @@ public class PayStationImplTest {
     }
 
 
-
-
-
-
-    
-    
     /**
      * Verify that the canceled entry does not add to the amount returned by
      * empty.
@@ -297,6 +298,19 @@ public class PayStationImplTest {
         Map result = instance.cancel();
         Map emptyMap = new HashMap();
         assertEquals(emptyMap, result);
+    }
+    
+    // Testing the LinearRateStrategy
+    // Verifying that the linear rate is correct
+    @Test
+    public void linearRateStrategy(){
+        
+        /**
+         * 100 cents entered in coins should equal 40
+         */
+        assertEquals("100 cents should be 40", 40, rateStrategy1.calculateTime(100));
+        
+        
     }
     
     
