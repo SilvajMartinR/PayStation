@@ -25,6 +25,9 @@ public class PayStationImplTest {
     
     //adding test for LinearRateStrategy
     RateStrategy rateStrategy1;
+    
+    //adding test for ProgressiveRateStrategy
+    RateStrategy rateStrategy2;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -40,6 +43,9 @@ public class PayStationImplTest {
         
         //setting up LinearRateStrategy
         rateStrategy1 = new LinearRateStrategy();
+        
+        //setting up ProgressiveRateStrategy
+        rateStrategy2 = new ProgressiveRateStrategy();
     }
     
 
@@ -308,9 +314,33 @@ public class PayStationImplTest {
         /**
          * 100 cents entered in coins should equal 40
          */
-        assertEquals("100 cents should be 40", 40, rateStrategy1.calculateTime(100));
+        assertEquals("100 cents should be 40", 40, 
+                rateStrategy1.calculateTime(100));
         
+    }
+    
+    // Testing the ProgressiveRateStrategy
+    // Verifying that the progressive rate is correct
+    @Test
+    public void progressiveRateStrategy(){
         
+        /**
+         * 100 cents entered should equal 40
+         */
+        assertEquals("100 cents should be 40", 40, 
+                rateStrategy2.calculateTime(100));
+        
+        /**
+         * 200 cents entered should equal 75
+         */
+        assertEquals("200 cents should be 75", 75,
+                rateStrategy2.calculateTime(200));
+        
+        /**
+         * 350 cents entered should equal 120
+         */
+        assertEquals("350 cents should be 120", 120,
+                rateStrategy2.calculateTime(350));
     }
     
     
