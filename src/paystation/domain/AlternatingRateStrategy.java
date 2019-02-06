@@ -5,10 +5,40 @@
  */
 package paystation.domain;
 
+import java.util.Calendar;
+
 /**
  *
  * @author christianlomboy
  */
 public class AlternatingRateStrategy {
-    
+
+    public int calculateTime(int insertedMoney, Calendar day) {
+
+        int x = insertedMoney;
+
+        if (day.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
+                || day.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+
+            if (x < 150) {
+
+                return ((x * 2) / 5);
+
+            } else if (x < 350 && x >= 150) {
+
+                return (int) ((x - 150) * (.3) + 60);
+
+            } else {
+
+                return ((x - 350) / 5 + 120);
+            }
+
+        } else {
+
+            return (x * 2) / 5;
+
+        }
+
+    }
+
 }
