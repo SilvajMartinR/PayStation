@@ -342,6 +342,18 @@ public class PayStationImplTest {
         assertEquals("350 cents should be 120", 120,
                 rateStrategy2.calculateTime(350));
     }
+    // Testing the AlternatingRateStrategy
+    // Verifying that the Alternate rate is correct
+    @Test
+    public void AlternatingRateStrategy0(){
+        
+        /**
+         * 0 cents entered in coins should equal 0
+         */
+        assertEquals("0 cents should be 0", 10, 
+                rateStrategy1.calculateTime(0));
+        
+    }
     
     
 }
