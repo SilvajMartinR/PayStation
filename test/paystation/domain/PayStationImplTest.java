@@ -326,7 +326,7 @@ public class PayStationImplTest {
         /**
          * 0 cents entered should equal 0
          */
-        assertEquals("0 cents should be 0", 10, 
+        assertEquals("0 cents should be 0", 0, 
                 rateStrategy2.calculateTime(0));
                
     }
