@@ -344,7 +344,7 @@ public class PayStationImplTest {
         /**
          * 50 cents entered should equal 58 minutes
          */
-        assertEquals("145 cents should be 58 minutes", 60, 
+        assertEquals("145 cents should be 58 minutes", 58, 
                 rateStrategy2.calculateTime(145));
                
     }
