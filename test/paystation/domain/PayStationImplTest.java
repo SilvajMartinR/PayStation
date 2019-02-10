@@ -349,6 +349,16 @@ public class PayStationImplTest {
                
     }
     @Test
+    public void progressiveRateStrategy150(){
+        /**
+         * 150 cents entered should equal 60 minutes
+         * Since (150-150)*(3/10)+60 = 0 + 60 = 60
+         */
+        assertEquals("150 cents should be 60 minutes", 58, 
+                rateStrategy2.calculateTime(150));
+               
+    }
+    @Test
     public void progressiveRateStrategy(){
         
         /**
