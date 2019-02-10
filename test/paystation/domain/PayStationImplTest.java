@@ -336,7 +336,7 @@ public class PayStationImplTest {
          * 250 cents entered in coins should equal 100
          * Since (250*2)/5=100
          */
-        assertEquals("250 cents should be 100", 500, 
+        assertEquals("250 cents should be 100", 100, 
                 rateStrategy1.calculateTime(250));
         
     }   
