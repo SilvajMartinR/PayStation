@@ -309,6 +309,16 @@ public class PayStationImplTest {
     // Testing the LinearRateStrategy
     // Verifying that the linear rate is correct
     @Test
+    public void linearRateStrategy0(){
+        
+        /**
+         * 0 cents entered in coins should equal 0
+         */
+        assertEquals("0 cents should be 0", 20, 
+                rateStrategy1.calculateTime(0));
+        
+    }
+    @Test
     public void linearRateStrategy(){
         
         /**
