@@ -329,7 +329,17 @@ public class PayStationImplTest {
                 rateStrategy1.calculateTime(50));
         
     }
-    
+    @Test
+    public void linearRateStrategy250(){
+        
+        /**
+         * 250 cents entered in coins should equal 100
+         * Since (250*2)/5=100
+         */
+        assertEquals("250 cents should be 100", 500, 
+                rateStrategy1.calculateTime(250));
+        
+    }   
     // The following tests are used for testing the ProgressiveRateStrategy
     // Verifying that the progressive rate is correct
     @Test
