@@ -319,8 +319,17 @@ public class PayStationImplTest {
         
     }
     
-    // Testing the ProgressiveRateStrategy
+    // The following tests are used for testing the ProgressiveRateStrategy
     // Verifying that the progressive rate is correct
+    @Test
+    public void progressiveRateStrategy0(){
+        /**
+         * 0 cents entered should equal 0
+         */
+        assertEquals("0 cents should be 0", 10, 
+                rateStrategy2.calculateTime(0));
+               
+    }
     @Test
     public void progressiveRateStrategy(){
         
@@ -354,6 +363,6 @@ public class PayStationImplTest {
                 rateStrategy1.calculateTime(0));
         
     }
-    
-    
+
+        
 }
