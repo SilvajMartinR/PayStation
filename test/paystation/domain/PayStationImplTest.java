@@ -313,8 +313,9 @@ public class PayStationImplTest {
         
         /**
          * 0 cents entered in coins should equal 0
+         * Since (0*2)/5=0
          */
-        assertEquals("0 cents should be 0", 20, 
+        assertEquals("0 cents should be 0", 0, 
                 rateStrategy1.calculateTime(0));
         
     }
