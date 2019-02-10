@@ -324,10 +324,19 @@ public class PayStationImplTest {
     @Test
     public void progressiveRateStrategy0(){
         /**
-         * 0 cents entered should equal 0
+         * 0 cents entered should equal 0 minutes
          */
         assertEquals("0 cents should be 0", 0, 
                 rateStrategy2.calculateTime(0));
+               
+    }
+    @Test
+    public void progressiveRateStrategy50(){
+        /**
+         * 50 cents entered should equal 20 minutes
+         */
+        assertEquals("50 cents should be 20 minutes", 50, 
+                rateStrategy2.calculateTime(50));
                
     }
     @Test
