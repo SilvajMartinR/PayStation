@@ -40,5 +40,9 @@ public class AlternatingRateStrategy {
         }
 
     }
+    
+    public Calendar setDay(Calendar date) {
+        return date;
+    }
 
 }
