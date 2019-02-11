@@ -111,4 +111,9 @@ public class PayStationImpl implements PayStation {
         insertedSoFar = 0;
         return total;
     }
+    
+    @Override
+    public int getInsertedSoFar() {
+        return insertedSoFar;
+    }
 }

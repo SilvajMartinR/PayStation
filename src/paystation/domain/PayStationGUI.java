@@ -21,6 +21,7 @@ import javax.swing.*;
 public class PayStationGUI {
     
     private Date date;
+    private PayStationImpl payStation;
     
     private final JButton configButton = new JButton();
     private final JButton nickelButton = new JButton();
@@ -29,9 +30,14 @@ public class PayStationGUI {
     private final JButton buyButton = new JButton();
     private final JButton cancelButton = new JButton();
     
+    private final JLabel dateLabel = new JLabel();
+    private final JLabel moneyLabel = new JLabel();
+    private final JLabel timeLabel = new JLabel();
+    
     public PayStationGUI(Date date) {
         
         this.date = date;
+        payStation = new PayStationImpl();
         
         this.draw();
         
@@ -57,7 +63,7 @@ public class PayStationGUI {
         frame.add(window);
         
         //Date 
-        JLabel dateLabel = new JLabel(date.toString());
+        dateLabel.setText(date.toString());
         Font dateFont = new Font(dateLabel.getFont().getName(), Font.PLAIN, 16);
         dateLabel.setForeground(Color.BLACK);
         dateLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -80,9 +86,8 @@ public class PayStationGUI {
         window.add(stratLabel);
         
         //Money Inserted
-        JLabel moneyLabel = new JLabel();
         Font moneyFont = new Font(moneyLabel.getFont().getName(), Font.BOLD, 52);
-        moneyLabel.setText("$0.00");
+        moneyLabel.setText("$00.00");
         moneyLabel.setForeground(Color.BLACK);
         moneyLabel.setFont(moneyFont);
         moneyLabel.setMinimumSize(windowSize);
@@ -92,7 +97,6 @@ public class PayStationGUI {
         window.add(moneyLabel);
         
         //Time Purchased
-        JLabel timeLabel = new JLabel();
         timeLabel.setText("00:00");
         timeLabel.setFont(moneyFont);
         timeLabel.setForeground(Color.BLACK);
@@ -152,8 +156,18 @@ public class PayStationGUI {
         
         setCancelListener();
         
-        //Set frame visible (last)
+        //Set frame visible
         frame.setVisible(true);
+        
+        //Start date/time updater thread
+        DateTime dateTime = new DateTime();
+        Thread thread = new Thread(dateTime);
+        thread.start();
+        
+        while (true) {
+            date = new Date();
+            dateLabel.setText(date.toString());
+        }
         
     }
     
@@ -175,7 +189,14 @@ public class PayStationGUI {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                try {
+                    payStation.addPayment(5);
+                }
+                catch (Exception ex) {
+                    
+                }
+                moneyLabel.setText(centsToDisplay(payStation.getInsertedSoFar()));
+                timeLabel.setText(timeToDisplay(payStation.readDisplay()));
             }
             
         });
@@ -188,7 +209,14 @@ public class PayStationGUI {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                try {
+                    payStation.addPayment(10);
+                }
+                catch (Exception ex) {
+                    
+                }
+                moneyLabel.setText(centsToDisplay(payStation.getInsertedSoFar()));
+                timeLabel.setText(timeToDisplay(payStation.readDisplay()));
             }
             
         });
@@ -201,7 +229,14 @@ public class PayStationGUI {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                try {
+                    payStation.addPayment(25);
+                }
+                catch (Exception ex) {
+                    
+                }
+                moneyLabel.setText(centsToDisplay(payStation.getInsertedSoFar()));
+                timeLabel.setText(timeToDisplay(payStation.readDisplay()));
             }
             
         });
@@ -243,6 +278,44 @@ public class PayStationGUI {
             
         });
         
+    }
+    
+    private String centsToDisplay(int cents) {
+        String string = "$";
+        int dollars = cents / 100;
+        cents = cents % 100;
+        if (dollars < 10) {
+            string += "0";
+        }
+        string += dollars + ".";
+        if (cents < 10) {
+            string += "0";
+        }
+        string += cents;
+        return string;
+    }
+    
+    private String timeToDisplay(int minutes) {
+        String string = "";
+        int hours = minutes / 60;
+        if (hours < 10) {
+            string += "0";
+        }
+        string+= hours + ":";
+        minutes = minutes % 60;
+        if (minutes < 10) {
+            string += "0";
+        }
+        string += minutes;
+        return string;
+    }
+    
+    private class DateTime implements Runnable {
+        @Override
+        public void run() {
+            date = new Date();
+            dateLabel.setText(date.toString());
+        }
     }
     
 }
