@@ -14,6 +14,7 @@ package paystation.domain;
  */
 public class ProgressiveRateStrategy implements RateStrategy{
     
+    @Override
     public int calculateTime(int insertedMoney){
         
         int x = insertedMoney;

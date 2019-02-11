@@ -22,12 +22,14 @@ import org.junit.BeforeClass;
 public class PayStationImplTest {
 
     PayStation ps;
-    
     //adding test for LinearRateStrategy
     RateStrategy rateStrategy1;
     
     //adding test for ProgressiveRateStrategy
     RateStrategy rateStrategy2;
+    
+    //adding test for AlternatingRateStrategy
+    AlternatingRateStrategy rateStrategy3 = new AlternatingRateStrategy();
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -46,6 +48,9 @@ public class PayStationImplTest {
         
         //setting up ProgressiveRateStrategy
         rateStrategy2 = new ProgressiveRateStrategy();
+        
+        //setting up AlternatingRateStrategy
+        //rateStrategy3 = new AlternatingRateStrategy();
     }
     
 
@@ -420,27 +425,6 @@ public class PayStationImplTest {
                 rateStrategy2.calculateTime(350));
                
     }
-    @Test
-    public void progressiveRateStrategy(){
-        
-        /**
-         * 100 cents entered should equal 40
-         */
-        assertEquals("100 cents should be 40", 40, 
-                rateStrategy2.calculateTime(100));
-        
-        /**
-         * 200 cents entered should equal 75
-         */
-        assertEquals("200 cents should be 75", 75,
-                rateStrategy2.calculateTime(200));
-        
-        /**
-         * 350 cents entered should equal 120
-         */
-        assertEquals("350 cents should be 120", 120,
-                rateStrategy2.calculateTime(350));
-    }
     // Testing the AlternatingRateStrategy
     // Verifying that the Alternate rate is correct
     @Test
@@ -450,7 +434,7 @@ public class PayStationImplTest {
          * 0 cents entered in coins should equal 0
          */
         assertEquals("0 cents should be 0", 0, 
-                rateStrategy1.calculateTime(0));
+                rateStrategy3.calculateTime(0));
         
     }
 

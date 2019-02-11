@@ -11,12 +11,18 @@ import java.util.Calendar;
  *
  * @author christianlomboy
  */
-public class AlternatingRateStrategy {
-
-    public int calculateTime(int insertedMoney, Calendar day) {
+public class AlternatingRateStrategy implements RateStrategy{
+    
+    private Calendar day;
+    
+    @Override
+    public int calculateTime(int insertedMoney) {
 
         int x = insertedMoney;
-
+        if(this.day == null)
+        {
+            this.day = Calendar.getInstance();
+        }
         if (day.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
                 || day.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
 
@@ -41,8 +47,8 @@ public class AlternatingRateStrategy {
 
     }
     
-    public Calendar setDay(Calendar date) {
-        return date;
+    public void setDay(Calendar date) {
+        this.day = date;
     }
 
 }
