@@ -9,8 +9,11 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
 import java.util.Map;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -31,6 +34,13 @@ public class PayStationGUI {
     private final JLabel dateLabel = new JLabel();
     private final JLabel moneyLabel = new JLabel();
     private final JLabel timeLabel = new JLabel();
+    private final JLabel stratLabel = new JLabel();
+    
+    private final JFrame frame = new JFrame("Pay Station");
+    private final JFrame menuFrame = new JFrame("Select Town");
+    
+    private final String data[] = {"Alpha Town", "Beta Town", "Gamma Town"};
+    private final JList townList = new JList(data);
     
     public PayStationGUI(Date date) {
         
@@ -44,7 +54,6 @@ public class PayStationGUI {
     private void draw() {
         
         //Main Winow
-        JFrame frame = new JFrame("Pay Station");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400,500);
         frame.setLayout(null);
@@ -73,8 +82,7 @@ public class PayStationGUI {
         window.add(dateLabel);
         
         //Rate Strategy
-        JLabel stratLabel = new JLabel();
-        stratLabel.setText("Rate strategy text goes here");
+        stratLabel.setText(Constants.STRATEGY_NAMES[payStation.getRateStrategy()]);
         stratLabel.setForeground(Color.BLACK);
         stratLabel.setMinimumSize(windowSize);
         stratLabel.setMaximumSize(windowSize);
@@ -175,7 +183,7 @@ public class PayStationGUI {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                selectStrategyMenu();
             }
         });
         
@@ -335,7 +343,8 @@ public class PayStationGUI {
     private void printReceipt(ReceiptImpl receipt) {
         
                 File receiptText = new File("receipt.txt");
-                String output = "-----Pay Station Receipt-----\n";
+                String output = "*** Pay Station Receipt - " + Constants.STRATEGY_NAMES[payStation.getRateStrategy()]
+                        + " ***\n\n";
                 output += date.toString() + "\n\n";
                 output += "Amount spent: " + centsToDisplay(receipt.getMoneyInserted()) + "\n";
                 output += "Time bought: " + timeToDisplay(receipt.value());
@@ -356,6 +365,54 @@ public class PayStationGUI {
                 catch(Exception ex){
                     
                 }
+        
+    }
+    
+    private void selectStrategyMenu() {
+        
+        menuFrame.setSize(200, 150);
+        menuFrame.setLayout(null);
+        menuFrame.setLocationRelativeTo(null);
+        
+        townList.setVisibleRowCount(3);
+        townList.setSelectedIndex(payStation.getRateStrategy() - 1);
+        townList.setSize(150, 50);
+        townList.setLocation(20, 10);
+        townList.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+        townList.addListSelectionListener(new TownListSelectionListener());
+        menuFrame.add(townList);
+        
+        JButton closeButton = new JButton();
+        closeButton.setText("Close");
+        closeButton.setSize(70, 40);
+        closeButton.setLocation(60, 80);
+        menuFrame.add(closeButton);
+        
+        closeButton.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuFrame.setVisible(false);
+                townList.setSelectedIndex(payStation.getRateStrategy() - 1);
+            }
+            
+        });
+        
+        menuFrame.setVisible(true);
+    }
+    
+    private class TownListSelectionListener implements ListSelectionListener {
+        
+        @Override
+        public void valueChanged(ListSelectionEvent e) {
+            
+            int newStrat = townList.getSelectedIndex() + 1;
+            if (payStation.setRateStrategy(newStrat)) {
+                stratLabel.setText(Constants.STRATEGY_NAMES[newStrat]);
+                timeLabel.setText(timeToDisplay(payStation.readDisplay()));
+            }
+            
+        }
         
     }
     

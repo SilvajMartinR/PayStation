@@ -28,6 +28,7 @@ public class PayStationImpl implements PayStation {
     private boolean nickleBool = false;
     private boolean dimeBool = false;
     private boolean quarterBool = false;
+    private int strategy = Constants.STRATEGY_LINEAR;
     
     @Override
     public void addPayment(int coinValue)
@@ -72,7 +73,9 @@ public class PayStationImpl implements PayStation {
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
         insertedSoFar += coinValue;
-        timeBought = insertedSoFar / 5 * 2;
+        
+        adjustTime();
+        
     }
 
     @Override
@@ -115,5 +118,41 @@ public class PayStationImpl implements PayStation {
     @Override
     public int getInsertedSoFar() {
         return insertedSoFar;
+    }
+    
+    @Override
+    public int getRateStrategy() {
+        return strategy;
+    }
+    
+    @Override
+    public boolean setRateStrategy(int strategyNumber) {
+        
+        if (strategyNumber > 0 && strategyNumber < 4) {
+            strategy = strategyNumber;
+            adjustTime();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    private void adjustTime() {
+        if (strategy == Constants.STRATEGY_LINEAR) {
+            LinearRateStrategy strat = new LinearRateStrategy();
+            timeBought = strat.calculateTime(insertedSoFar);
+        }
+        else if (strategy == Constants.STRATEGY_PROGRESSIVE) {
+            ProgressiveRateStrategy strat = new ProgressiveRateStrategy();
+            timeBought = strat.calculateTime(insertedSoFar);
+        }
+        else if (strategy == Constants.STRATEGY_ALTERNATING) {
+            AlternatingRateStrategy strat = new AlternatingRateStrategy();
+            timeBought = strat.calculateTime(insertedSoFar);
+        }
+        else {
+            timeBought = insertedSoFar / 5 * 2;
+        }
     }
 }
