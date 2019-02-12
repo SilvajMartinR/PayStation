@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import javax.swing.*;
 
 /**
@@ -250,16 +252,7 @@ public class PayStationGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                /**
-                File receipt = new File("receipt.txt");
-                try{
-                    receipt.createNewFile();
-                    Desktop.getDesktop().open(receipt);
-                }
-                catch(Exception ex){
-                    
-                }
-                **/
+                printReceipt(payStation.buy());
                 
             }
             
@@ -316,6 +309,33 @@ public class PayStationGUI {
             date = new Date();
             dateLabel.setText(date.toString());
         }
+    }
+    
+    private void printReceipt(ReceiptImpl receipt) {
+        
+                File receiptText = new File("receipt.txt");
+                String output = "-----Pay Station Receipt-----\n";
+                output += date.toString() + "\n\n";
+                output += "Amount spent: " + centsToDisplay(receipt.getMoneyInserted()) + "\n";
+                output += "Time bought: " + timeToDisplay(receipt.value());
+                
+                try{
+                    receiptText.createNewFile();
+                    OutputStream stream = new FileOutputStream(receiptText);
+                    stream.write(output.getBytes(), 0, output.length());
+                    stream.close();
+                }
+                catch(Exception ex){
+                    
+                }
+                
+                try{
+                    Desktop.getDesktop().open(receiptText);
+                }
+                catch(Exception ex){
+                    
+                }
+        
     }
     
 }

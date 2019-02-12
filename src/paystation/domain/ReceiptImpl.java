@@ -17,8 +17,9 @@ public class ReceiptImpl implements Receipt {
     private int value;
     private int moneyInserted;
 
-    public ReceiptImpl(int value) {
+    public ReceiptImpl(int value, int moneyInserted) {
         this.value = value;
+        this.moneyInserted = moneyInserted;
     }
     @Override
     public int value() {
@@ -26,6 +27,6 @@ public class ReceiptImpl implements Receipt {
     }
     
     public int getMoneyInserted() {
-        return this.moneyInserted;
+        return moneyInserted;
     }
 }

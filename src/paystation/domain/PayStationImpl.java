@@ -81,8 +81,8 @@ public class PayStationImpl implements PayStation {
     }
 
     @Override
-    public Receipt buy() {
-        Receipt r = new ReceiptImpl(timeBought);
+    public ReceiptImpl buy() {
+        ReceiptImpl r = new ReceiptImpl(timeBought, insertedSoFar);
         reset();
         return r;
     }
