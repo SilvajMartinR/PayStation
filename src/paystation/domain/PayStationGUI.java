@@ -50,7 +50,9 @@ public class PayStationGUI {
         this.draw();
         
     }
-    
+    /**
+     * Main function to draw the visual elements of the GUI
+     */
     private void draw() {
         
         //Main Winow
@@ -177,6 +179,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the "Config" button is clicked
+     */
     public void setConfigListener() {
         
         configButton.addActionListener(new ActionListener() {
@@ -189,6 +194,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the Nickel / "5¢" button is pressed
+     */
     public void setNickelListener() {
         
         nickelButton.addActionListener(new ActionListener() {
@@ -209,6 +217,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the Dime / "10¢" button is pressed
+     */
     public void setDimeListener() {
         
         dimeButton.addActionListener(new ActionListener() {
@@ -229,6 +240,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the Quarter / "25¢" button is pressed
+     */
     public void setQuarterListener() {
         
         quarterButton.addActionListener(new ActionListener() {
@@ -249,6 +263,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the "Buy" button is pressed
+     */
     public void setBuyListener() {
         
         buyButton.addActionListener(new ActionListener() {
@@ -266,6 +283,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Sets the event listener for when the "Cancel" button is pressed
+     */
     public void setCancelListener() {
         
         cancelButton.addActionListener(new ActionListener() {
@@ -302,6 +322,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Converts the input number of cents to the format displayed on the GUI
+     */
     private String centsToDisplay(int cents) {
         String string = "$";
         int dollars = cents / 100;
@@ -317,6 +340,9 @@ public class PayStationGUI {
         return string;
     }
     
+    /**
+     * Converts the input number of minutes to the format displayed on the GUI
+     */
     private String timeToDisplay(int minutes) {
         String string = "";
         int hours = minutes / 60;
@@ -332,6 +358,9 @@ public class PayStationGUI {
         return string;
     }
     
+    /**
+     * Thread to update the time/date in real time on the display
+     */
     private class DateTime implements Runnable {
         @Override
         public void run() {
@@ -340,6 +369,10 @@ public class PayStationGUI {
         }
     }
     
+    /**
+     * Creates a printable receipt from the receipt data and writes it to and
+     * opens a text file
+     */
     private void printReceipt(ReceiptImpl receipt) {
         
                 File receiptText = new File("receipt.txt");
@@ -368,6 +401,9 @@ public class PayStationGUI {
         
     }
     
+    /**
+     * Function to display the town/strategy configuration menu
+     */
     private void selectStrategyMenu() {
         
         menuFrame.setSize(200, 150);
@@ -401,6 +437,9 @@ public class PayStationGUI {
         menuFrame.setVisible(true);
     }
     
+    /**
+     * Listener used by the JList object in the configuration window
+     */
     private class TownListSelectionListener implements ListSelectionListener {
         
         @Override

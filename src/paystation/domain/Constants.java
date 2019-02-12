@@ -1,9 +1,5 @@
 package paystation.domain;
 
-/**
- *
- * @author michael
- */
 public class Constants {
     
     public static final int STRATEGY_LINEAR = 1;

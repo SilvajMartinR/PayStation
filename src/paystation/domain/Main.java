@@ -8,10 +8,6 @@ package paystation.domain;
 import java.util.Date;
 import java.util.logging.Handler;
 
-/**
- *
- * @author michael
- */
 public class Main {
     
     public static void main(String[] args) {
@@ -19,8 +15,6 @@ public class Main {
         Date date = new Date();
         
         PayStationGUI gui = new PayStationGUI(date);
-        
-        //Pass in a Date to alternating rate strategy
         
     }
     
