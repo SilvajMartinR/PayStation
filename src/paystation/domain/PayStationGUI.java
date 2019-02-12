@@ -253,6 +253,8 @@ public class PayStationGUI {
             public void actionPerformed(ActionEvent e) {
                 
                 printReceipt(payStation.buy());
+                moneyLabel.setText("$00.00");
+                timeLabel.setText("00:00");
                 
             }
             
