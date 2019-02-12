@@ -52,11 +52,14 @@ public class ReceiptImplTest {
     }
 
     /**
-     * Buy for 100 cents and verify the receipt
+     * LinearRateStrategy Buy for 100 cents and verify the receipt
      */
     @Test
-    public void shouldReturnReceiptWhenBuy100c()
+    public void shouldReturnReceiptWhenBuy100cLinear()
             throws IllegalCoinException {
+
+        ps.setRateStrategy(1);
+
         ps.addPayment(10);
         ps.addPayment(10);
         ps.addPayment(10);
@@ -70,4 +73,85 @@ public class ReceiptImplTest {
         assertEquals(40, receipt.value());
     }
 
+    /**
+     * ProgressiveRateStrategy Buy for 100 cents and verify the receipt
+     */
+    @Test
+    public void shouldReturnReceiptWhenBuy100cProgressive()
+            throws IllegalCoinException {
+
+        ps.setRateStrategy(2);
+
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(25);
+        ps.addPayment(25);
+
+        Receipt receipt;
+        receipt = ps.buy();
+        assertEquals(40, receipt.value());
+    }
+
+    /**
+     * ProgressiveRateStrategy Buy for 200 cents and verify the receipt
+     */
+    @Test
+    public void shouldReturnReceiptWhenBuy200cProgressive()
+            throws IllegalCoinException {
+
+        ps.setRateStrategy(2);
+
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+
+        Receipt receipt;
+        receipt = ps.buy();
+        assertEquals(75, receipt.value());
+    }
+
+    /**
+     * ProgressiveRateStrategy Buy for 200 cents and verify the receipt
+     */
+    @Test
+    public void shouldReturnReceiptWhenBuy400cProgressive()
+            throws IllegalCoinException {
+
+        ps.setRateStrategy(2);
+
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+        ps.addPayment(25);
+
+        Receipt receipt;
+        receipt = ps.buy();
+        assertEquals(130, receipt.value());
+    }
 }
