@@ -16,6 +16,24 @@ public class ReceiptImplTest {
 
     PayStation ps;
 
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setup() {
+        ps = new PayStationImpl();
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
+
     /**
      * Buy should return a valid receipt of the proper amount of parking time
      */
