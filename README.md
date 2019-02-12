@@ -32,5 +32,6 @@ Team Work:
   
   
 Testing: 
+
   We performed unit testing on our code. We made individual tests for each of the rate strategies - Linear, Progressive, and Alternating that verified whether our program calculated the expected amount of time. We employed automated testing using the JUnit testing framework in order to test whether our rate strategies worked correctly. The intuition behind our test design was to check the endpoints of each interval of time calculation for amount of cents entered, as well as a point inside the interval. This helps determine whether the rate is working as according to plan. One caveat is still that you could park for infinitely much time while using a paystation, and thus it doesn’t give closure to these defined intervals. To remedy this, we thought it would be sufficient to check a reasonably large amount of cents for its corresponding time. Using this methodology to test our program was logical, straightforward, and beneficial to us finding bugs.
 
