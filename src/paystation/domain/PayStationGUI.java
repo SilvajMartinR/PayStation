@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Map;
 import javax.swing.*;
 
 /**
@@ -268,6 +269,29 @@ public class PayStationGUI {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+                Map<Integer, Integer> map = payStation.cancel();
+                
+                int nickels = 0;
+                if (map.containsKey(1)) {
+                    nickels = map.get(1);
+                }
+                int dimes = 0;
+                if (map.containsKey(2)) {
+                    dimes = map.get(2);
+                }
+                int quarters = 0;
+                if (map.containsKey(3)) {
+                    quarters = map.get(3);
+                }
+                
+                String returnedCoins = "Nickels returned = " + nickels + "\n";
+                returnedCoins += "Dimes returned = " + dimes + "\n";
+                returnedCoins += "Quarters returned = " + quarters;
+                
+                moneyLabel.setText("$00.00");
+                timeLabel.setText("00:00");
+                JOptionPane.showMessageDialog(null, returnedCoins);
                 
             }
             
