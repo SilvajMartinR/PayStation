@@ -308,9 +308,9 @@ public class PayStationGUI {
                     quarters = map.get(3);
                 }
                 
-                String returnedCoins = "Nickels returned = " + nickels + "\n";
-                returnedCoins += "Dimes returned = " + dimes + "\n";
-                returnedCoins += "Quarters returned = " + quarters;
+                String returnedCoins = "Nickels returned = " + nickels + " : " + (nickels * 5) + " cents\n";
+                returnedCoins += "Dimes returned = " + dimes + " : " + (dimes * 10) + " cents\n";
+                returnedCoins += "Quarters returned = " + quarters + " : " + (quarters * 25) + " cents";
                 
                 moneyLabel.setText("$00.00");
                 timeLabel.setText("00:00");
