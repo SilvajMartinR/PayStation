@@ -122,7 +122,7 @@ public class ReceiptImplTest {
     }
 
     /**
-     * ProgressiveRateStrategy Buy for 200 cents and verify the receipt
+     * ProgressiveRateStrategy Buy for 400 cents and verify the receipt
      */
     @Test
     public void shouldReturnReceiptWhenBuy400cProgressive()
@@ -153,5 +153,34 @@ public class ReceiptImplTest {
         Receipt receipt;
         receipt = ps.buy();
         assertEquals(130, receipt.value());
+    }
+
+    /**
+     * AlternatingRateStrategy Buy for 100 cents and verify the receipt on a
+     * weekday
+     */
+    @Test
+    public void shouldReturnReceiptWhenBuy100cAlternatingWeekday()
+            throws IllegalCoinException {
+
+        ps.setRateStrategy(3);
+
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        ps.addPayment(25);
+        ps.addPayment(25);
+
+        Receipt receipt;
+        receipt = ps.buy();
+        try {
+            assertEquals(45, receipt.value());
+            System.out.println(receipt.value() + " - pass, it is a weekday");
+        } catch(AssertionError e) {
+            System.out.println(receipt.value() + " - fail, it is not a weekday");
+            throw e;
+        }
     }
 }
