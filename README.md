@@ -1,5 +1,7 @@
 # Paystation
-Team Playstation
+## Team Playstation
+
+### Requirements:
 
 A Paystation is a mechanism which accepts some type of payment in exchange for a limited parking time
 based on the amount purchaseby the client. This program emulates that same idea, the paystation program
@@ -11,16 +13,18 @@ will do the following:
 - The client can cancel which returns the number of each coin entered and the total coins value
 - The paystation has three functioning rate strategies for three different clients
   1. AlphaTown uses Linear strategy: 
-    - (amount inserted * 2) / 5
+    - amount of time = (amount inserted * 2) / 5
   2. BetaTown uses Progressive strategy:
-    - Time < One hour: (amount inserted * 2) / 5
-    - One hour < Time < Two hours, or 150 <= amount inserted < 350: (amount inserted - 150) * (3 / 10) + 60
-    - Two hours < Time: (amount inserted - 350) / 5 + 120
+    - Time < One hour: amount of time = (amount inserted * 2) / 5
+    - One hour < Time < Two hours, or 150 <= amount inserted < 350: amount of time = (amount inserted - 150) * (3 / 10) + 60
+    - Two hours < Time: amount of time = (amount inserted - 350) / 5 + 120
   3. GammaTown uses Alternating strategy:
     - On weekdays: Linear rate strategy
     - On weekends: Progressive rate strategy
     
-Team Work:
+We as a team decided it would be best to implement the "Polymorphic Proposal" that we talked about in class for our rate strategies for maintainability, readability, and reliability. Using the "Polymorphic Proposal," we could use one main project with additional subclasses, therefore it was easier to maintain than using the "Source Tree Copying." It was also easier to read than using many conditional statements as seen in the "Parametric Solution." Overall it was seemed to be the most reliable of the available options too once we started our UML. Therefore we built a well-maintained, readable, and reliable code using the "Polymorphic Proposal."
+    
+### Team Work:
 
   The team consisted of four people; Brian, Mike, Christian and Jose. The work was divided up by
   where people better suited their strengths. Mike had more experience with UML Class diagrams 
@@ -44,7 +48,7 @@ Team Work:
   different rate strategies, and then displays the name of rate strategy on the paystation, Alphatown, BetaTown, and GammaTown. 
   
   
-Testing: 
+### Testing: 
 
   We performed unit testing on our code. We made individual tests for each of the rate strategies - Linear, Progressive, and Alternating   that verified whether our program calculated the expected amount of time. We employed automated testing using the JUnit testing         framework in order to test whether our rate strategies worked correctly. The intuition behind our test design was to check the           endpoints of each interval of time calculation for amount of cents entered, as well as a point inside the interval. This helps           determine whether the rate is working as according to plan. One caveat is still that you could park for infinitely much time while       using a paystation, and thus it doesn’t give closure to these defined intervals. To remedy this, we thought it would be sufficient to   check a reasonably large amount of cents for its corresponding time. Using this methodology to test our program was logical,             straightforward, and beneficial to us finding bugs. We also tested the receipt implementation in order to verify that the receipt       object stored the correct amount of cents entered as well as amount of time purchased. This helped ensure that our program didn't have   any intermediate bugs.
 
