@@ -404,7 +404,7 @@ public class PayStationImplTest {
         Calendar day = Calendar.getInstance();
         day.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
         rateStrategy3.setDay(day);
-        assertEquals("50 cents should be 20", 0, 
+        assertEquals("50 cents should be 20", 20, 
                 rateStrategy3.calculateTime(50));
         
     }
@@ -417,7 +417,7 @@ public class PayStationImplTest {
         Calendar day = Calendar.getInstance();
         day.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
         rateStrategy3.setDay(day);
-        assertEquals("50 cents should be 20", 0, 
+        assertEquals("50 cents should be 20", 20, 
                 rateStrategy3.calculateTime(50));
         
     }
@@ -430,7 +430,7 @@ public class PayStationImplTest {
         Calendar day = Calendar.getInstance();
         day.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         rateStrategy3.setDay(day);
-        assertEquals("50 cents should be 20", 0, 
+        assertEquals("50 cents should be 20", 20, 
                 rateStrategy3.calculateTime(50));
         
     }
