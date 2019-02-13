@@ -434,5 +434,43 @@ public class PayStationImplTest {
                 rateStrategy3.calculateTime(50));
         
     }
+    @Test
+    public void AlternatingRateStrategy250Weekday(){   
+        /**
+         * 0 cents entered in coins should equal 0
+         * Since (250*2)/5=100
+         */
+        Calendar day = Calendar.getInstance();
+        day.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+        rateStrategy3.setDay(day);
+        assertEquals("250 cents should be 20", 100, 
+                rateStrategy3.calculateTime(250));
         
+    }
+    @Test
+    public void AlternatingRateStrategy250Saturday(){  
+        /**
+         * 0 cents entered in coins should equal 0
+         * Since (50*2)/5=20
+         */
+        Calendar day = Calendar.getInstance();
+        day.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        rateStrategy3.setDay(day);
+        assertEquals("250 cents should be 90", 100, 
+                rateStrategy3.calculateTime(250));
+        
+    }
+    @Test
+    public void AlternatingRateStrategy250Sunday(){  
+        /**
+         * 0 cents entered in coins should equal 0
+         * Since (50*2)/5=20
+         */
+        Calendar day = Calendar.getInstance();
+        day.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        rateStrategy3.setDay(day);
+        assertEquals("250 cents should be 90", 100, 
+                rateStrategy3.calculateTime(250));
+        
+    }    
 }
