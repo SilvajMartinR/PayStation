@@ -45,7 +45,9 @@ We as a team decided it would be best to implement the "Polymorphic Proposal" th
   the exact amount of coins inserted back to the client, example 3 dimes and 4 nickels are inserted which
   equals 50 cents if clients pushes cancel the paystation will return 3 dimes and 4 nickels and not 2 quarters
   or another combination of coins. There is also a config button which allows the user to switch between the 
-  different rate strategies, and then displays the name of rate strategy on the paystation, Alphatown, BetaTown, and GammaTown. 
+  different rate strategies, and then displays the name of rate strategy on the paystation, Alphatown, BetaTown, and GammaTown.
+  At the end before submitting we all went through and revised each others work, where we saw some adjustments had to be made to make
+  sure all of the requirements stated above were met.
   
   
 ### Testing: 
