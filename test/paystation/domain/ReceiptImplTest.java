@@ -176,7 +176,7 @@ public class ReceiptImplTest {
         Receipt receipt;
         receipt = ps.buy();
         try {
-            assertEquals(45, receipt.value());
+            assertEquals(40, receipt.value());
             System.out.println(receipt.value() + " - pass, it is a weekday");
         } catch(AssertionError e) {
             System.out.println(receipt.value() + " - fail, it is not a weekday");
