@@ -389,6 +389,16 @@ public class PayStationImplTest {
                 rateStrategy2.calculateTime(350));
                
     }
+        @Test
+    public void progressiveRateStrategy500(){
+        /**
+         * 500 cents entered in coins should equal 150
+         * Since (500-350)/5+120 = 30 + 120 = 150
+         */
+        assertEquals("500 cents should be 120 minutes", 120, 
+                rateStrategy2.calculateTime(350));
+               
+    }
     // Testing the AlternatingRateStrategy
     // Verifying that the Alternate rate is correct
     @Test
@@ -439,7 +449,7 @@ public class PayStationImplTest {
         Calendar day = Calendar.getInstance();
         day.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
         rateStrategy3.setDay(day);
-        assertEquals("250 cents should be 20", 100, 
+        assertEquals("250 cents should be 100", 100, 
                 rateStrategy3.calculateTime(250));
         
     }
