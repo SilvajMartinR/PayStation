@@ -68,4 +68,10 @@ public interface PayStation {
      * call.
      */
     public int empty();
+    
+    public int getInsertedSoFar();
+    
+    public int getRateStrategy();
+    
+    public boolean setRateStrategy(int strategyNumber);
 }

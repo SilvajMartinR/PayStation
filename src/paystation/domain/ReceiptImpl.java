@@ -15,13 +15,18 @@ package paystation.domain;
 public class ReceiptImpl implements Receipt {
 
     private int value;
+    private int moneyInserted;
 
-    public ReceiptImpl(int value) {
+    public ReceiptImpl(int value, int moneyInserted) {
         this.value = value;
+        this.moneyInserted = moneyInserted;
     }
-
     @Override
     public int value() {
         return value;
+    }
+    
+    public int getMoneyInserted() {
+        return moneyInserted;
     }
 }
